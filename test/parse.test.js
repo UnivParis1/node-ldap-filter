@@ -22,6 +22,16 @@ function checkFilters(t, filters) {
 
 ///--- Tests
 
+test('semicolon in filter', function (t) {
+  var str = 'cn;lang-de;lang-en=foobar';
+  var f = parse(str);
+  t.ok(f);
+  t.equal(f.attribute, 'cn;lang-de;lang-en');
+  t.equal(f.value, 'foobar');
+  t.equal(f.toString(), '(' + str + ')');
+  t.end();
+});
+
 test('XML Strings in filter', function (t) {
   var str = '(&(CentralUIEnrollments=<mydoc>*)(objectClass=User))';
   var f = parse(str);
